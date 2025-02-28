@@ -22,6 +22,10 @@ public class MarketEntity {
     public MarketEntity(String name) {
         this(null,name);
     }
+
+    public MarketEntity(Market market) {
+        this(market.getId(), market.getName());
+    }
     public String getName() {
         return name;
     }

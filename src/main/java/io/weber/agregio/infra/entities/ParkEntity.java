@@ -30,7 +30,7 @@ public class ParkEntity {
     }
 
     public ParkEntity(Park park) {
-        this(null, park.getName(), park.getType(), park.getCapacityInMW(), park.getFloorPrice(), park.getDuration());
+        this(park.getId(), park.getName(), park.getType(), park.getCapacityInMW(), park.getFloorPrice(), park.getDuration());
     }
 
     public Park toModel(){

@@ -12,8 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
@@ -47,6 +46,15 @@ class ParkServiceImplTest {
         Park foundPark = parkService.findById(1L);
 
         assertNotNull(foundPark);
+        verify(parkRepository, times(1)).findById(1L);
+    }
+
+    @Test
+    void testGetThrowException() {
+        when(parkRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+
+        assertThrows(IllegalArgumentException.class, () -> parkService.findById(1L));
         verify(parkRepository, times(1)).findById(1L);
     }
 

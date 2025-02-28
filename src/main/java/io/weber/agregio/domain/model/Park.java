@@ -43,4 +43,7 @@ public class Park {
     public Integer getDuration() {
         return duration;
     }
+    public Block createBlock() {
+        return new Block(null, capacityInMW, floorPrice, this);
+    }
 }

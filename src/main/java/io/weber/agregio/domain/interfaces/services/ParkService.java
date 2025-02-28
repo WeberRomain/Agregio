@@ -1,5 +1,6 @@
 package io.weber.agregio.domain.interfaces.services;
 
+import io.weber.agregio.domain.model.Block;
 import io.weber.agregio.domain.model.Park;
 
 import java.util.List;
@@ -9,4 +10,5 @@ public interface ParkService {
     Park save(Park park);
     List<Park> findByMarket(Long marketId);
     List<Park> findAll();
+    Block createBlock(Long parkId);
 }

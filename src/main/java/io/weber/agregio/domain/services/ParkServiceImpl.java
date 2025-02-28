@@ -1,7 +1,9 @@
 package io.weber.agregio.domain.services;
 
+import io.weber.agregio.domain.interfaces.repositories.BlockRepository;
 import io.weber.agregio.domain.interfaces.repositories.ParkRepository;
 import io.weber.agregio.domain.interfaces.services.ParkService;
+import io.weber.agregio.domain.model.Block;
 import io.weber.agregio.domain.model.Park;
 
 import java.util.List;
@@ -9,9 +11,11 @@ import java.util.List;
 public class ParkServiceImpl implements ParkService {
 
     private final ParkRepository parkRepository;
+    private final BlockRepository blockRepository;
 
-    public ParkServiceImpl(ParkRepository parkRepository) {
+    public ParkServiceImpl(ParkRepository parkRepository, BlockRepository blockRepository) {
         this.parkRepository = parkRepository;
+        this.blockRepository = blockRepository;
     }
 
 
@@ -35,6 +39,13 @@ public class ParkServiceImpl implements ParkService {
     @Override
     public List<Park> findAll() {
         return parkRepository.findAll();
+    }
+
+    @Override
+    public Block createBlock(Long parkId) {
+        var park = findById(parkId);
+        var block = park.createBlock();
+        return blockRepository.save(block);
     }
 
     private void validatePark(Park park) {
