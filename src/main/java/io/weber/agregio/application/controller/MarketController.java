@@ -3,6 +3,7 @@ package io.weber.agregio.application.controller;
 import io.weber.agregio.application.dto.MarketDto.MarketDto;
 import io.weber.agregio.application.dto.MarketDto.MarketRequestDto;
 import io.weber.agregio.domain.interfaces.services.MarketService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class MarketController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MarketDto createMarket(@RequestBody MarketRequestDto request) {
+    public MarketDto createMarket(@RequestBody @Valid MarketRequestDto request) {
         var market = marketService.save(request.name());
         return new MarketDto(market);
     }

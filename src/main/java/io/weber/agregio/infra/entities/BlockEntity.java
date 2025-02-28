@@ -1,7 +1,6 @@
 package io.weber.agregio.infra.entities;
 
 import io.weber.agregio.domain.model.Block;
-import io.weber.agregio.domain.model.Offer;
 import jakarta.persistence.*;
 
 @Entity

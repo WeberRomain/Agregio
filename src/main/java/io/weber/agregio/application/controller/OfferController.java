@@ -3,6 +3,7 @@ package io.weber.agregio.application.controller;
 import io.weber.agregio.application.dto.OfferDto.OfferDto;
 import io.weber.agregio.application.dto.OfferDto.OfferRequestDto;
 import io.weber.agregio.domain.interfaces.services.OfferService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class OfferController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public OfferDto createOffer(@RequestBody OfferRequestDto request) {
+    public OfferDto createOffer(@RequestBody @Valid OfferRequestDto request) {
         var offer = offerService.save(request.toModel());
         return new OfferDto(offer);
     }

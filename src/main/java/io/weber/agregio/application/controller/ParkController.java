@@ -3,6 +3,7 @@ package io.weber.agregio.application.controller;
 import io.weber.agregio.application.dto.ParkDto.ParkDto;
 import io.weber.agregio.application.dto.ParkDto.ParkRequestDto;
 import io.weber.agregio.domain.interfaces.services.ParkService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class ParkController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ParkDto createPark(@RequestBody ParkRequestDto parkRequest) {
+    public ParkDto createPark(@RequestBody @Valid ParkRequestDto parkRequest) {
         var park = parkService.save(parkRequest.toModel());
         return new ParkDto(park);
     }
